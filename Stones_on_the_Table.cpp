@@ -23,5 +23,6 @@ int main() {
     }
     int sum = red + green + blue;
     cout << sum ; 
+    
   	return 0;
 }
