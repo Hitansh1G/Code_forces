@@ -1,62 +1,26 @@
-#include<iostream>
-#include<string>
-#include<algorithm>
-#include<vector>
+#include <iostream>
 #include<map>
-#include<set>
-#include<list>
-#include<queue>
-#include<stack>
-#include<cstring>
-#include<cmath>
-#include<cstdlib>
-#include<unordered_map>
-#include<unordered_set>
-#define Fast ios_base::sync_with_stdio(false); cin.tie(NULL);
 using namespace std;
-int vasya(int n, vector<int>list , int m, vector<int>queries){
-    int count1=1;
-    for(int i=0 ; i<m ; i++){
-        for(int j=1 ; j<=n ; j++){
-            if(queries[i] != list[j]){
-                count1++;
-            }
-            else break;
-        }
-    }
-    return count1;
-}
 
-int petya(int n, vector<int>list , int m, vector<int>queries){
-    int count2=1;
-    for(int i=0 ; i<m ; i++){
-        for(int j=n ; j>0 ; j--){
-            if(queries[i] != list[j]){
-                count2++;
-            }
-            else break;
-        }
+int main() {
+    map<int,int> ma;
+    long long first=0;
+    long long second=0;
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        int y;
+        cin>>y;
+        ma[y]=i;
     }
-    return count2;
-}
-
-int main(){
-    Fast
-    int n,temp,m;
-    vector<int>list;
-    vector<int>queries;
-    cin >> n;
-    for(int i=1 ; i<=n ; i++){
-        cin >> temp;
-        list.push_back(temp);
+    int q;
+    cin>>q;
+    for(int i=0;i<q;i++){
+        int x;
+        cin>>x;
+        first+=ma[x]+1;
+        second+=n-ma[x];
     }
-    cin >> m;
-    for(int i=0 ; i<m ; i++){
-        cin >> temp;
-        queries.push_back(temp);
-    }
-    int ans1 = petya(n, list, m, queries);
-    int ans2 = vasya(n, list, m, queries);
-    cout<< ans1 << " " << ans2;
+    cout<<first<<" "<<second;
     return 0;
 }
