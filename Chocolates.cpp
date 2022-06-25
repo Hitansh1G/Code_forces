@@ -39,15 +39,19 @@ int32_t main(){
     //     else sum+=arr[i];
     // }
     int n;
-    int ans=0;
     cin >> n;
     int a[n];
-    for (int i=0 ; i<n ; i ++)
+	for(int i=0;i<n;i++)
         cin >> a[i];
-    for (int i=n-2 ; i>=0 ; i--)
-        a[i] = max(0, min(a[i + 1] - 1, a[i]));
-    for (int i = 0; i < n; i ++)
-        ans += a[i];
-    cout << ans << endl;
+	int M=2012345678;
+	long long ans=0;
+	for(int i=n ; i-- ;){
+		a[i] = min(a[i] , M-1);
+		if( a[i]<0 )
+            a[i]=0;
+		M=a[i];
+		ans+=a[i];
+	}
+    cout<<ans;
     return 0;
 }
