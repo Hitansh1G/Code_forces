@@ -1,79 +1,44 @@
-#include<iostream>
-#include<string>
-#include<algorithm>
-#include<vector>
-#include<map>
-#include<set>
-#include<list>
-#include<queue>
-#include<stack>
-#include<cstring>
-#include<cmath>
-#include<cstdlib>
-#include<unordered_map>
-#include<unordered_set>
-#define Fast ios_base::sync_with_stdio(false); cin.tie(NULL);
-typedef long long ll;
+#include <bits/stdc++.h>
+ 
 using namespace std;
-// int main()
-// {
-//     int t;
-//     cin>>t;
-//     while(t--){
-//         int n;
-//         cin >> n;
-//         int arr[n];
-//         bool flag = false;
-//         for(int i=0 ; i<n-2 ; i++){
-//             for(int j=i+1 ; j<n-1 ; j++){
-//                 for(int k=j+1 ; k<n ; k++){
-//                     if(helper(arr[i]+arr[j]++arr[k])==true)
-//                 }
-//             }
-//         }
-//     }
-//     return 0;
-// }
-int main()
-{
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        int arr[n];
-        int brr[100];
-        for(int i=0;i<n;i++){
-            cin>>arr[i];
-        }
-        unordered_map<int, int>m;
-        for(int i=0;i<n;i++){
-            m[arr[i]]++;
-        }
-        int p=0;
-        for(int i=0, j=i+1,k=i+2; i<n-2, j<n-1, k<n; ){
-            while(k<n){
-                brr[p]=arr[i]+arr[j]+arr[k];
-                j++;
-                k++;
-                p++;
-            }
-            i++;
-            j=i+1;
-            k=i+2;
-        }
-        int flag=1;
-        for(int i=0;i<p;i++){
-            if(m.count(brr[p])<1){
-                flag=0;
-            }
-        }
-        if(flag==1){
-            cout<<"yes"<<endl;
-        }
-        else{
-            cout<<"no"<<endl;
-        }
-    }
-    return 0;
+ 
+const int MAX = 200007;
+const int MOD = 1000000007;
+ 
+void solve() {
+	int n;
+	cin >> n;
+	vector<int> pos, neg, a;
+	for (int i = 0; i < n; i++) {
+		int x; cin >> x;
+		if (x > 0) {pos.push_back(x);}
+		else if (x < 0) {neg.push_back(x);}
+		else {
+			if (a.size() < 2) {a.push_back(x);}
+		}
+	}
+	if (pos.size() > 2 || neg.size() > 2) {cout << "NO\n"; return;}
+	
+	for (int i : pos) {a.push_back(i);}
+	for (int i : neg) {a.push_back(i);}
+	
+	for (int i = 0; i < a.size(); i++) {
+		for (int j = i + 1; j < a.size(); j++) {
+			for (int k = j + 1; k < a.size(); k++) {
+				bool ok = false;
+				for (int l = 0; l < a.size(); l++) {
+					if (a[i] + a[j] + a[k] == a[l]) {ok = true;}
+				}
+				if (!ok) {cout << "NO\n"; return;}
+			}
+		}
+	}
+	cout << "YES\n";
+}
+ 
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+	int tt; cin >> tt; for (int i = 1; i <= tt; i++) {solve();}
+	// solve();
 }
