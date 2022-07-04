@@ -20,32 +20,31 @@ int main(){
     int t;
     cin >> t;
     while(t--){
-        int n,x,count=0;
-        cin >> n >> x;
-        vector<int>vec;
-        for(int i=0 ; i<n ; i++){
-            int x;
-            cin >> x;
-            vec.push_back(x);
-            // sum += arr[i];
+        ll n, k;
+        cin >> n >> k;
+        ll a[n], i, sum = 0;
+ 
+        for(i = 0; i < n; i++){
+            cin >> a[i];
+            sum+=a[i];
         }
-        int temp=x;
-        int mini = *min_element(vec.begin(), vec.end());
-        while(mini<=x){
-            for(int i=0 ; i<n ; i++){
-                if(vec[i]<=x){
-                    count++;
-                    x -= vec[i];
-                }
-                // else continue;
-                vec[i]++;
-                
-                
+        sort(a, a+n);
+        i = n-1;
+        ll c = 0, x, p;
+        ll ans = 0;
+        while(i >= 0){
+            x = k - sum;
+            sum-=a[i];
+            if(x < 0) i--;
+            else{
+                p = x/(i+1) - c;
+                ans = ans + (i+1)*(p+1);
+                c+=(p+1);
+                i--;
             }
-            x=temp;
-            mini++;
         }
-        cout<<count<<endl;
+        cout<<ans;
+        cout<<endl;
     }
     return 0;
 }
