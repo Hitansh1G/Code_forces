@@ -19,6 +19,7 @@ int32_t main(){
     Fast
     int n;
 	cin >> n;
+	int a[n];
 	int now=0,ans=0;
 	for(int i=1;i<=n;i++){
 		cin >> a[i];
