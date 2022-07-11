@@ -37,37 +37,30 @@ int32_t main(){
     int t;
     cin >> t;
     while(t--){
-        int n,k;
+        int n, k;
         cin >> n >> k;
-        int arr[n];
-        for(int i=0 ; i<n ; i++){
-            cin >> arr[i];
-        }                                   
-        // unordered_map<int,int>mp;
-        // for(int i=0 ; i<n ; i++){
-        //     mp[arr[i]]++;
-        // }
-        while(k--){
-            int a,b;
-            cin >> a >> b;
-            if(search(arr,n,a) == true && search(arr,n,b)==true){
-                for(int i=n-1 ; i>=0 ; i--){
-                    if(arr[i]==b){
-                        cout<<"yes"<<endl;
-                        break;
-                    }
-                    else if(arr[i]==a) {
-                        cout<<"no"<<endl;
-                        break;
-                    }
-                    else continue;
-
-                }
+        vector<int> u(n);
+        for (int i = 0; i < n; i++) {
+            cin >> u[i];
+        }
+        map<int, int> first;
+        map<int, int> last;
+        for (int i = 0; i < n; i++) {
+            if (first.find(u[i]) == first.end()) {
+                first[u[i]] = i;
             }
-            else{
-                cout<<"no"<<endl;
+            last[u[i]] = i;
+        }
+        while (k--) {
+            int x, y;
+            cin >> x >> y;
+            if (first.find(x) == first.end() || last.find(y) == last.end()) {
+                cout << "NO" << '\n';
+                continue;
             }
-            
+            x = first[x];
+            y = last[y];
+            cout << (x <= y ? "YES" : "NO") << '\n';
         }
     }
     return 0;
