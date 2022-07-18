@@ -17,12 +17,12 @@ typedef long long ll;
 using namespace std;
 int32_t main(){
     Fast
-    int n,m,a;
+    ll n,m,a;
     cin >> n >> m >> a;
 
-    int len = n/a;
+    ll len = n/a;
     if(n%a!=0) len++;
-    int bre = m/a;
+    ll bre = m/a;
     if(m%a!=0) bre++;
     
     cout<<len*bre<<endl;
